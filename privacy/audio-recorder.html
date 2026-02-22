@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Audio & Microphone Recorder | Rolling Sausage</title>
+    <meta name="description"
+          content="Privacy policy for the Audio & Microphone Recorder app by Rolling Sausage.">
+    <meta name="theme-color"
+          content="#1f1b16">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        background: "oklch(0.17 0.01 60)",
+                        foreground: "oklch(0.93 0.02 80)",
+                        card: "oklch(0.22 0.012 55)",
+                        "card-foreground": "oklch(0.93 0.02 80)",
+                        popover: "oklch(0.22 0.012 55)",
+                        "popover-foreground": "oklch(0.93 0.02 80)",
+                        primary: "oklch(0.82 0.16 80)",
+                        "primary-foreground": "oklch(0.17 0.01 60)",
+                        secondary: "oklch(0.27 0.015 55)",
+                        "secondary-foreground": "oklch(0.85 0.02 80)",
+                        muted: "oklch(0.27 0.015 55)",
+                        "muted-foreground": "oklch(0.62 0.03 70)",
+                        accent: "oklch(0.72 0.14 45)",
+                        "accent-foreground": "oklch(0.17 0.01 60)",
+                        destructive: "oklch(0.577 0.245 27.325)",
+                        "destructive-foreground": "oklch(0.577 0.245 27.325)",
+                        border: "oklch(0.30 0.015 55)",
+                        input: "oklch(0.30 0.015 55)",
+                        ring: "oklch(0.82 0.16 80)",
+                    },
+                    fontFamily: {
+                        sans: ['Geist', 'sans-serif'],
+                        heading: ['Fredoka', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Geist:wght@400;500;600;700&display=swap');
+
+        @layer base {
+            * {
+                border-color: theme('colors.border');
+            }
+            body {
+                background-color: theme('colors.background');
+                color: theme('colors.foreground');
+                font-family: theme('fontFamily.sans');
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
+        }
+
+        /* Noise texture overlay */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            pointer-events: none;
+            opacity: 0.035;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 256px 256px;
+        }
+    </style>
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body class="font-sans antialiased">
+    <main class="min-h-screen">
+        <div class="mx-auto max-w-3xl px-6 py-12 md:py-20">
+            <a href="../index.html"
+               class="mb-10 inline-flex items-center gap-2 rounded-xl bg-secondary px-4 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-primary/10 hover:text-primary">
+                <i data-lucide="arrow-left"
+                   class="h-4 w-4"></i>
+                Back to apps
+            </a>
+
+            <article class="prose-custom">
+                <h1 class="text-3xl font-bold tracking-tight text-foreground md:text-4xl font-heading">
+                    Audio & Microphone Recorder
+                </h1>
+                <p class="mt-2 text-lg font-semibold">Privacy Policy</p>
+
+                <div class="mt-10 space-y-8 text-sm leading-relaxed text-card-foreground">
+                    XXX
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>

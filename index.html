@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>Rolling Sausage - Apps</title>
+    <meta name="description"
+          content="Apps built by Rolling Sausage. Art Ideas Generator, Magic Square, Audio & Microphone Recorder, and more coming soon.">
+    <meta name="theme-color"
+          content="#1f1b16">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        background: "oklch(0.17 0.01 60)",
+                        foreground: "oklch(0.93 0.02 80)",
+                        card: "oklch(0.22 0.012 55)",
+                        "card-foreground": "oklch(0.93 0.02 80)",
+                        popover: "oklch(0.22 0.012 55)",
+                        "popover-foreground": "oklch(0.93 0.02 80)",
+                        primary: "oklch(0.82 0.16 80)",
+                        "primary-foreground": "oklch(0.17 0.01 60)",
+                        secondary: "oklch(0.27 0.015 55)",
+                        "secondary-foreground": "oklch(0.85 0.02 80)",
+                        muted: "oklch(0.27 0.015 55)",
+                        "muted-foreground": "oklch(0.62 0.03 70)",
+                        accent: "oklch(0.72 0.14 45)",
+                        "accent-foreground": "oklch(0.17 0.01 60)",
+                        destructive: "oklch(0.577 0.245 27.325)",
+                        "destructive-foreground": "oklch(0.577 0.245 27.325)",
+                        border: "oklch(0.30 0.015 55)",
+                        input: "oklch(0.30 0.015 55)",
+                        ring: "oklch(0.82 0.16 80)",
+                    },
+                    fontFamily: {
+                        sans: ['Geist', 'sans-serif'],
+                        heading: ['Fredoka', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Geist:wght@400;500;600;700&display=swap');
+
+    @layer base {
+      * {
+        border-color: theme('colors.border');
+      }
+      body {
+        background-color: theme('colors.background');
+        color: theme('colors.foreground');
+        font-family: theme('fontFamily.sans');
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+    }
+
+    /* Noise texture overlay */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      opacity: 0.035;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 256px 256px;
+    }
+
+    /* Sausage mascot animations */
+    @keyframes sausage-float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      25% { transform: translateY(-6px) rotate(1deg); }
+      50% { transform: translateY(-10px) rotate(0deg); }
+      75% { transform: translateY(-6px) rotate(-1deg); }
+    }
+
+    @keyframes sausage-wiggle {
+      0% { transform: rotate(0deg) scale(1); }
+      15% { transform: rotate(-10deg) scale(1.05); }
+      30% { transform: rotate(8deg) scale(1.03); }
+      45% { transform: rotate(-6deg) scale(1.02); }
+      60% { transform: rotate(4deg) scale(1.01); }
+      75% { transform: rotate(-2deg) scale(1); }
+      100% { transform: rotate(0deg) scale(1); }
+    }
+
+    .sausage-float {
+      animation: sausage-float 4s ease-in-out infinite;
+    }
+
+    .sausage-wiggle {
+      animation: sausage-wiggle 0.8s ease-in-out;
+    }
+        </style>
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body class="font-sans antialiased">
+    <main class="relative min-h-screen overflow-hidden px-6 py-16 md:py-24">
+        <!-- Subtle background glow -->
+        <div class="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 h-[600px] w-[800px] rounded-full opacity-20 blur-[120px]"
+             style="background: radial-gradient(circle, oklch(0.82 0.16 80 / 0.4), transparent 70%)"
+             aria-hidden="true"></div>
+        <div class="relative mx-auto flex max-w-5xl flex-col items-center">
+            <!-- Hero -->
+            <section class="flex flex-col items-center">
+                <div class="relative cursor-pointer select-none"
+                     id="mascot-container"
+                     role="img"
+                     aria-label="Rolling Sausage mascot - a friendly cartoon sausage character">
+                    <!-- Glow ring behind mascot -->
+                    <div class="absolute -inset-4 rounded-full opacity-40 blur-2xl"
+                         style="background: radial-gradient(circle, oklch(0.82 0.16 80 / 0.5), transparent 70%)"
+                         aria-hidden="true"></div>
+                    <div class="sausage-float relative">
+                        <div id="mascot-wiggle">
+                            <img src="images/mascot.jpg"
+                                 alt="Rolling Sausage mascot"
+                                 width="180"
+                                 height="180"
+                                 class="rounded-3xl shadow-2xl ring-2 ring-primary/20">
+                        </div>
+                    </div>
+                </div>
+                <h1
+                    class="mt-8 text-5xl font-bold tracking-tight text-foreground md:text-7xl text-center text-balance font-heading">
+                    Rolling Sausage
+                </h1>
+                <p
+                   class="mt-4 max-w-md text-center text-base leading-relaxed text-muted-foreground md:text-lg text-pretty">
+                    Simple, fun, and useful apps — cooked to perfection by a solo developer.
+                    <br>
+                    <a href="https://github.com/lrakauskas"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="text-primary hover:underline underline-offset-4">
+                        See what else the chief is cooking on
+                        GitHub.
+                    </a>
+                </p>
+            </section>
+            <!-- Apps -->
+            <section class="mt-16 w-full md:mt-20">
+                <div class="mb-8 flex items-center gap-4">
+                    <span class="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+                        today's menu
+                    </span>
+                    <div class="h-px flex-1 bg-border"></div>
+                </div>
+                <div class="grid gap-5 md:grid-cols-2">
+                    <!-- App Card 1 -->
+                    <div
+                         class="group relative flex flex-col rounded-2xl border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:border-amber-500/40 group-hover:shadow-amber-500/10">
+                        <div class="flex items-start gap-4">
+                            <div
+                                 class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-amber-500/15 text-amber-400 transition-transform duration-300 group-hover:scale-110 overflow-hidden">
+                                <img src="images/cartographers.png"
+                                     alt="Cartographers Map Generator Logo"
+                                     class="h-full w-full object-cover">
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <h3
+                                    class="text-lg font-bold text-card-foreground leading-tight text-balance font-heading">
+                                    Cartographers Map Generator
+                                </h3>
+                                <span
+                                      class="mt-1.5 inline-flex items-center rounded-full px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wider bg-amber-500/10 text-amber-400">
+                                    Google Play
+                                </span>
+                            </div>
+                        </div>
+                        <p class="mt-4 flex-1 text-sm leading-relaxed text-muted-foreground">
+                            Generate, print, and play custom maps for Cartographers. A companion app that creates
+                            balanced maps, tracks coins and scores, and lets you mark your map digitally while using the
+                            physical board game.
+                        </p>
+                        <div class="mt-6 flex flex-wrap items-center gap-3">
+                            <a href="#"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition-all duration-200 bg-amber-500 hover:bg-amber-600 text-amber-50">
+                                <i data-lucide="external-link"
+                                   class="h-3.5 w-3.5"></i>
+                                View in Store
+                            </a>
+                            <a href="privacy/cartographers-map-generator.html"
+                               class="inline-flex items-center gap-2 rounded-xl border border-border px-4 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-card-foreground">
+                                <i data-lucide="shield"
+                                   class="h-3.5 w-3.5"></i>
+                                Privacy Policy
+                            </a>
+                        </div>
+                    </div>
+                    <!-- App Card 2 -->
+                    <div
+                         class="group relative flex flex-col rounded-2xl border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:border-sky-500/40 group-hover:shadow-sky-500/10">
+                        <div class="flex items-start gap-4">
+                            <div
+                                 class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-sky-500/15 text-sky-400 transition-transform duration-300 group-hover:scale-110 overflow-hidden">
+                                <img src="images/recorder.png"
+                                     alt="Audio & Microphone Recorder Logo"
+                                     class="h-full w-full object-cover">
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <h3
+                                    class="text-lg font-bold text-card-foreground leading-tight text-balance font-heading">
+                                    Audio & Microphone Recorder
+                                </h3>
+                                <span
+                                      class="mt-1.5 inline-flex items-center rounded-full px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wider bg-sky-500/10 text-sky-400">
+                                    Microsoft Store
+                                </span>
+                            </div>
+                        </div>
+                        <p class="mt-4 flex-1 text-sm leading-relaxed text-muted-foreground">
+                            A simple and reliable audio recording app for Windows. Record from your microphone and/or
+                            system
+                            audio with ease.
+                        </p>
+                        <div class="mt-6 flex flex-wrap items-center gap-3">
+                            <a href="https://apps.microsoft.com/detail/9p76w4w7fjt4?hl=en-GB&gl=GB"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition-all duration-200 bg-sky-500 hover:bg-sky-600 text-sky-50">
+                                <i data-lucide="external-link"
+                                   class="h-3.5 w-3.5"></i>
+                                View in Store
+                            </a>
+                            <a href="privacy/audio-recorder.html"
+                               class="inline-flex items-center gap-2 rounded-xl border border-border px-4 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-card-foreground">
+                                <i data-lucide="shield"
+                                   class="h-3.5 w-3.5"></i>
+                                Privacy Policy
+                            </a>
+                        </div>
+                    </div>
+                    <!-- App Card 3 -->
+                    <div
+                         class="group relative flex flex-col rounded-2xl border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:border-teal-500/40 group-hover:shadow-teal-500/10">
+                        <div class="flex items-start gap-4">
+                            <div
+                                 class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-teal-500/15 text-teal-400 transition-transform duration-300 group-hover:scale-110 overflow-hidden">
+                                <img src="images/magicsquare.webp"
+                                     alt="Magic Square Logo"
+                                     class="h-full w-full object-cover">
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <h3
+                                    class="text-lg font-bold text-card-foreground leading-tight text-balance font-heading">
+                                    Magic Square
+                                </h3>
+                                <span
+                                      class="mt-1.5 inline-flex items-center rounded-full px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wider bg-teal-500/10 text-teal-400">
+                                    Google Play
+                                </span>
+                            </div>
+                        </div>
+                        <p class="mt-4 flex-1 text-sm leading-relaxed text-muted-foreground">
+                            Complete the square using nine coloured shapes across 62,000+ puzzles. A calming,
+                            minimalistic puzzle game. Works offline.
+                        </p>
+                        <div class="mt-6 flex flex-wrap items-center gap-3">
+                            <a href="https://play.google.com/store/apps/details?id=com.RollingSausage.MagicSquare"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition-all duration-200 bg-teal-500 hover:bg-teal-600 text-teal-50">
+                                <i data-lucide="external-link"
+                                   class="h-3.5 w-3.5"></i>
+                                View in Store
+                            </a>
+                            <a href="privacy/magic-square.html"
+                               class="inline-flex items-center gap-2 rounded-xl border border-border px-4 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-card-foreground">
+                                <i data-lucide="shield"
+                                   class="h-3.5 w-3.5"></i>
+                                Privacy Policy
+                            </a>
+                        </div>
+                    </div>
+                    <!-- App Card 4 -->
+                    <div
+                         class="group relative flex flex-col rounded-2xl border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:border-rose-500/40 group-hover:shadow-rose-500/10">
+                        <div class="flex items-start gap-4">
+                            <div
+                                 class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-rose-500/15 text-rose-400 transition-transform duration-300 group-hover:scale-110 overflow-hidden">
+                                <img src="images/art.webp"
+                                     alt="Art Ideas Generator Logo"
+                                     class="h-full w-full object-cover">
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <h3
+                                    class="text-lg font-bold text-card-foreground leading-tight text-balance font-heading">
+                                    Art Ideas Generator
+                                </h3>
+                                <span
+                                      class="mt-1.5 inline-flex items-center rounded-full px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wider bg-rose-500/10 text-rose-400">
+                                    Google Play
+                                </span>
+                            </div>
+                        </div>
+                        <p class="mt-4 flex-1 text-sm leading-relaxed text-muted-foreground">
+                            Generate incredible art ideas with a click. 3 complexity levels, favorites, and over
+                            1,000,000 unique ideas.
+                        </p>
+                        <div class="mt-6 flex flex-wrap items-center gap-3">
+                            <a href="https://play.google.com/store/apps/details?id=com.DefaultCompany.ArtIdeasGenerator"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition-all duration-200 bg-rose-500 hover:bg-rose-600 text-rose-50">
+                                <i data-lucide="external-link"
+                                   class="h-3.5 w-3.5"></i>
+                                View in Store
+                            </a>
+                            <a href="privacy/art-ideas-generator.html"
+                               class="inline-flex items-center gap-2 rounded-xl border border-border px-4 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-card-foreground">
+                                <i data-lucide="shield"
+                                   class="h-3.5 w-3.5"></i>
+                                Privacy Policy
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Coming Soon Card -->
+                    <div
+                         class="relative flex flex-col items-center justify-center rounded-2xl border border-dashed border-primary/25 bg-primary/[0.03] p-6 min-h-[230px] overflow-hidden">
+                        <div class="pointer-events-none absolute inset-0 opacity-30"
+                             style="background: radial-gradient(ellipse at 50% 0%, oklch(0.82 0.16 80 / 0.15), transparent 60%)"
+                             aria-hidden="true"></div>
+                        <div class="relative flex flex-col items-center">
+                            <div
+                                 class="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                                <i data-lucide="rocket"
+                                   class="h-6 w-6"></i>
+                            </div>
+                            <p class="mt-4 text-lg font-bold text-foreground font-heading">
+                                Coming Soon
+                            </p>
+                            <p class="mt-1 text-sm text-muted-foreground">
+                                Something new is cooking
+                            </p>
+                            <div class="mt-5 flex gap-1.5">
+                                <span class="h-1.5 w-1.5 rounded-full bg-white/50 animate-pulse"></span>
+                                <span class="h-1.5 w-1.5 rounded-full bg-white/50 animate-pulse"
+                                      style="animation-delay: 0.2s"></span>
+                                <span class="h-1.5 w-1.5 rounded-full bg-white/50 animate-pulse"
+                                      style="animation-delay: 0.4s"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Mascot wiggle animation logic
+        const mascotContainer = document.getElementById('mascot-container');
+        const mascotWiggle = document.getElementById('mascot-wiggle');
+
+        function triggerWiggle() {
+            mascotWiggle.classList.add('sausage-wiggle');
+            setTimeout(() => {
+                mascotWiggle.classList.remove('sausage-wiggle');
+            }, 800);
+        }
+
+        mascotContainer.addEventListener('click', triggerWiggle);
+
+        setInterval(() => {
+            triggerWiggle();
+        }, 5000);
+    </script>
+</body>
+
+</html>
