@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import shutil
 import subprocess
 import sys
 from pathlib import Path
@@ -20,12 +21,10 @@ def main() -> int:
     manifest = json.loads(DATA_MANIFEST.read_text(encoding="utf-8"))
     major_line = manifest["major_line"]
     plugin_version = manifest["plugin_version"]
+    mike_command = resolve_mike_command()
 
     run([sys.executable, "-m", "mkdocs", "build", "--strict", "--config-file", str(MKDOCS_FILE)])
-    run([
-        sys.executable,
-        "-m",
-        "mike",
+    run(mike_command + [
         "deploy",
         "--config-file",
         str(MKDOCS_FILE),
@@ -39,10 +38,7 @@ def main() -> int:
         major_line,
         "latest",
     ] + (["--push"] if args.push else []))
-    run([
-        sys.executable,
-        "-m",
-        "mike",
+    run(mike_command + [
         "set-default",
         "--config-file",
         str(MKDOCS_FILE),
@@ -54,6 +50,20 @@ def main() -> int:
     ] + (["--push"] if args.push else []))
 
     return 0
+
+
+def resolve_mike_command() -> list[str]:
+    for candidate in ["mike", "mike.exe"]:
+        mike_path = shutil.which(candidate)
+        if mike_path:
+            return [mike_path]
+
+    scripts_dir = Path(sys.executable).resolve().parent
+    for candidate in [scripts_dir / "mike", scripts_dir / "mike.exe"]:
+        if candidate.exists():
+            return [str(candidate)]
+
+    raise RuntimeError("Unable to locate the mike CLI executable on PATH.")
 
 
 def run(command: list[str]) -> None:
