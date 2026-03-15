@@ -1,6 +1,8 @@
 # NativePHP Google AdMob
 
-Google AdMob integration for NativePHP Mobile with a facade-first PHP API and Android-native event dispatching.
+Google AdMob integration for NativePHP Mobile with a facade-first PHP API and native event dispatching.
+
+> Currently **supports Android only**. iOS coming soon.
 
 ## What you get
 
@@ -9,12 +11,11 @@ Google AdMob integration for NativePHP Mobile with a facade-first PHP API and An
 - rewarded ads with explicit load then show flow
 - facade-first PHP API
 - documented events with payload details
-- versioned docs by major plugin line
 
 ## Platform scope
 
-- Android only for now
-- iOS is intentionally out of scope in the current package
+- Android - supported
+- iOS - coming soon
 
 ## Recommended reading order
 
@@ -26,13 +27,3 @@ Google AdMob integration for NativePHP Mobile with a facade-first PHP API and An
 ## Test mode behavior
 
 When `ADMOB_TEST_MODE=true`, the plugin always uses Google's official demo ad unit IDs instead of your production IDs.
-
-## Imported release metadata
-
-<!-- GENERATED:release_meta:start -->
-- Current imported release: `v0.1.1`
-- Major docs line: `v0`
-- Source commit: `25257c14ab24362872b0f7f7a97a92f4725fbdd6`
-- Generated at: `2026-03-15T19:47:35+00:00`
-- Artifact source: `lrakauskas/nativephp-admob` release asset `nativephp-google-admob-docs-v0.1.1.zip`
-<!-- GENERATED:release_meta:end -->
