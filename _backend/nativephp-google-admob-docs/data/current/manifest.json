@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "package_name": "lrakauskas/nativephp-google-admob",
-  "plugin_version": "0.1.0",
-  "plugin_tag": "v0.1.0",
+  "plugin_version": "0.1.1",
+  "plugin_tag": "v0.1.1",
   "major_line": "v0",
-  "source_commit": "ab1d8dd28eb8950ce4b570f6000f29160b503194",
-  "generated_at": "2026-03-15T15:24:11+00:00",
+  "source_commit": "25257c14ab24362872b0f7f7a97a92f4725fbdd6",
+  "generated_at": "2026-03-15T19:47:35+00:00",
   "visibility_policy": "public-facades-events-config-only"
 }

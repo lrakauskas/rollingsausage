@@ -30,9 +30,9 @@ When `ADMOB_TEST_MODE=true`, the plugin always uses Google's official demo ad un
 ## Imported release metadata
 
 <!-- GENERATED:release_meta:start -->
-- Current imported release: `v0.1.0`
+- Current imported release: `v0.1.1`
 - Major docs line: `v0`
-- Source commit: `ab1d8dd28eb8950ce4b570f6000f29160b503194`
-- Generated at: `2026-03-15T15:24:11+00:00`
-- Artifact source: `lrakauskas/nativephp-google-admob` release asset `nativephp-google-admob-docs-v0.1.0.zip`
+- Source commit: `25257c14ab24362872b0f7f7a97a92f4725fbdd6`
+- Generated at: `2026-03-15T19:47:35+00:00`
+- Artifact source: `lrakauskas/nativephp-admob` release asset `nativephp-google-admob-docs-v0.1.1.zip`
 <!-- GENERATED:release_meta:end -->
