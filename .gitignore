@@ -1,0 +1,10 @@
+_backend/nativephp-google-admob-docs/.cache/
+_backend/nativephp-google-admob-docs/.mike/
+_backend/nativephp-google-admob-docs/.site/
+_backend/nativephp-google-admob-docs/.venv/
+_backend/nativephp-google-admob-docs/site/
+_backend/nativephp-google-admob-docs/tmp/
+_backend/nativephp-google-admob-docs/scripts/__pycache__/
+DOCS_AUTOMATION.md
+DOCS_LOCAL.md
+GITHUB_SETUP.md

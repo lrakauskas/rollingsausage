@@ -1,0 +1,54 @@
+site_name: NativePHP Google AdMob
+site_description: Documentation for the NativePHP Google AdMob plugin.
+site_url: https://lrakauskas.github.io/rollingsausage/nativephp-admob/docs/
+docs_dir: docs
+remote_name: origin
+remote_branch: main
+theme:
+  name: material
+  language: en
+  font:
+    text: Space Grotesk
+    code: JetBrains Mono
+  logo: assets/images/admob-mark.svg
+  favicon: assets/images/admob-mark.svg
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - navigation.instant
+    - content.code.copy
+    - search.highlight
+    - search.suggest
+  palette:
+    - scheme: default
+      primary: custom
+      accent: custom
+markdown_extensions:
+  - admonition
+  - attr_list
+  - tables
+  - pymdownx.superfences
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+plugins:
+  - search
+  - mike:
+      alias_type: redirect
+      canonical_version: latest
+      deploy_prefix: nativephp-admob/docs
+      version_selector: true
+extra_css:
+  - assets/stylesheets/extra.css
+nav:
+  - Home: index.md
+  - Installation: installation.md
+  - Configuration: configuration.md
+  - Banner Ads: banner-ads.md
+  - Interstitial Ads: interstitial-ads.md
+  - Rewarded Ads: rewarded-ads.md
+  - Events: events.md
+  - API Reference:
+      - Facades: api-reference/facades.md
+      - Enums: api-reference/enums.md
+      - Config: api-reference/config.md
