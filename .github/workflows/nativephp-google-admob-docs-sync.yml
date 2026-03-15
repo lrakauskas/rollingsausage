@@ -72,8 +72,12 @@ jobs:
           --tag "${{ steps.payload.outputs.plugin_tag }}"
           --asset-name "${{ steps.payload.outputs.asset_name }}"
 
-      - name: Validate docs build
-        run: python -m mkdocs build --strict --config-file _backend/nativephp-google-admob-docs/mkdocs.yml
+      - name: Generate publishable static docs tree
+        run: python _backend/nativephp-google-admob-docs/scripts/deploy_docs.py
+
+      - name: Ensure published docs tree exists
+        run: |
+          test -f nativephp-admob/docs/index.html
 
       - name: Build PR metadata
         id: prmeta
@@ -95,7 +99,8 @@ jobs:
             ## Summary
             - import sanitized docs artifact for `${{ steps.payload.outputs.plugin_tag }}`
             - refresh marker-based generated sections under `_backend/nativephp-google-admob-docs/docs`
-            - keep final publishing gated behind PR review and merge
+            - refresh published static docs under `nativephp-admob/docs/`
+            - publishing stays gated behind PR review and merge
 
             ## Source
             - private repo: `${{ steps.payload.outputs.private_repo }}`
@@ -103,3 +108,4 @@ jobs:
             - asset: `${{ steps.payload.outputs.asset_name }}`
           add-paths: |
             _backend/nativephp-google-admob-docs/**
+            nativephp-admob/docs/**
