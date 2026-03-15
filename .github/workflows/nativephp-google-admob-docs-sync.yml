@@ -29,12 +29,12 @@ jobs:
 
     steps:
       - name: Check out public docs repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: '3.12'
 
@@ -84,7 +84,7 @@ jobs:
           echo "title=docs(nativephp-google-admob): sync ${TAG} into ${MAJOR}" >> "$GITHUB_OUTPUT"
 
       - name: Create or update PR
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v8
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "docs(nativephp-google-admob): sync ${{ steps.payload.outputs.plugin_tag }}"
