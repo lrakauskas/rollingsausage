@@ -1,0 +1,105 @@
+name: NativePHP Google AdMob Docs Sync
+
+on:
+  repository_dispatch:
+    types:
+      - nativephp-google-admob-docs-artifact
+  workflow_dispatch:
+    inputs:
+      private_repo:
+        description: Private repo slug
+        required: true
+        default: lrakauskas/nativephp-google-admob
+      plugin_tag:
+        description: Plugin tag
+        required: true
+      asset_name:
+        description: Artifact asset name
+        required: true
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync-docs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out public docs repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install docs dependencies
+        run: pip install -r _backend/nativephp-google-admob-docs/requirements.txt
+
+      - name: Resolve dispatch payload
+        id: payload
+        env:
+          PRIVATE_REPO: ${{ github.event.client_payload.private_repo || github.event.inputs.private_repo }}
+          PLUGIN_TAG: ${{ github.event.client_payload.plugin_tag || github.event.inputs.plugin_tag }}
+          ASSET_NAME: ${{ github.event.client_payload.asset_name || github.event.inputs.asset_name }}
+        run: |
+          echo "private_repo=${PRIVATE_REPO}" >> "$GITHUB_OUTPUT"
+          echo "plugin_tag=${PLUGIN_TAG}" >> "$GITHUB_OUTPUT"
+          echo "asset_name=${ASSET_NAME}" >> "$GITHUB_OUTPUT"
+
+      - name: Download docs artifact
+        env:
+          PRIVATE_DOCS_SOURCE_TOKEN: ${{ secrets.PRIVATE_DOCS_SOURCE_TOKEN }}
+        run: >-
+          python _backend/nativephp-google-admob-docs/scripts/download_artifact.py
+          --repo "${{ steps.payload.outputs.private_repo }}"
+          --tag "${{ steps.payload.outputs.plugin_tag }}"
+          --asset-name "${{ steps.payload.outputs.asset_name }}"
+          --output "_backend/nativephp-google-admob-docs/tmp/artifact.zip"
+
+      - name: Ensure artifact metadata exists
+        run: |
+          test -f _backend/nativephp-google-admob-docs/tmp/artifact.zip
+
+      - name: Import artifact into templates
+        run: >-
+          python _backend/nativephp-google-admob-docs/scripts/import_artifact.py
+          "_backend/nativephp-google-admob-docs/tmp/artifact.zip"
+          --source-repo "${{ steps.payload.outputs.private_repo }}"
+          --tag "${{ steps.payload.outputs.plugin_tag }}"
+          --asset-name "${{ steps.payload.outputs.asset_name }}"
+
+      - name: Validate docs build
+        run: python -m mkdocs build --strict --config-file _backend/nativephp-google-admob-docs/mkdocs.yml
+
+      - name: Build PR metadata
+        id: prmeta
+        run: |
+          TAG="${{ steps.payload.outputs.plugin_tag }}"
+          MAJOR=$(python -c "import json; print(json.load(open('_backend/nativephp-google-admob-docs/data/current/manifest.json'))['major_line'])")
+          echo "branch=docs/nativephp-google-admob-${TAG}" >> "$GITHUB_OUTPUT"
+          echo "title=docs(nativephp-google-admob): sync ${TAG} into ${MAJOR}" >> "$GITHUB_OUTPUT"
+
+      - name: Create or update PR
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "docs(nativephp-google-admob): sync ${{ steps.payload.outputs.plugin_tag }}"
+          branch: ${{ steps.prmeta.outputs.branch }}
+          delete-branch: true
+          title: ${{ steps.prmeta.outputs.title }}
+          body: |
+            ## Summary
+            - import sanitized docs artifact for `${{ steps.payload.outputs.plugin_tag }}`
+            - refresh marker-based generated sections under `_backend/nativephp-google-admob-docs/docs`
+            - keep final publishing gated behind PR review and merge
+
+            ## Source
+            - private repo: `${{ steps.payload.outputs.private_repo }}`
+            - release tag: `${{ steps.payload.outputs.plugin_tag }}`
+            - asset: `${{ steps.payload.outputs.asset_name }}`
+          add-paths: |
+            _backend/nativephp-google-admob-docs/**
