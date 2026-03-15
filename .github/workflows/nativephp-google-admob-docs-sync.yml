@@ -24,6 +24,8 @@ permissions:
 jobs:
   sync-docs:
     runs-on: ubuntu-latest
+    env:
+      PRIVATE_DOCS_SOURCE_TOKEN: ${{ secrets.PRIVATE_DOCS_SOURCE_TOKEN }}
 
     steps:
       - name: Check out public docs repo
@@ -51,8 +53,6 @@ jobs:
           echo "asset_name=${ASSET_NAME}" >> "$GITHUB_OUTPUT"
 
       - name: Download docs artifact
-        env:
-          PRIVATE_DOCS_SOURCE_TOKEN: ${{ secrets.PRIVATE_DOCS_SOURCE_TOKEN }}
         run: >-
           python _backend/nativephp-google-admob-docs/scripts/download_artifact.py
           --repo "${{ steps.payload.outputs.private_repo }}"
