@@ -26,6 +26,7 @@ def main() -> int:
     major_line = manifest["major_line"]
     plugin_version = manifest["plugin_version"]
 
+    ensure_git_identity()
     delete_local_branch(args.deploy_branch)
     run([sys.executable, "-m", "mkdocs", "build", "--strict", "--config-file", str(MKDOCS_FILE)])
     run_mike([
@@ -70,6 +71,26 @@ def run_mike(arguments: list[str]) -> None:
     ]
 
     run(command)
+
+
+def ensure_git_identity() -> None:
+    if git_config_exists("user.name") and git_config_exists("user.email"):
+        return
+
+    run(["git", "config", "user.name", "github-actions[bot]"], cwd=REPO_ROOT)
+    run(["git", "config", "user.email", "41898282+github-actions[bot]@users.noreply.github.com"], cwd=REPO_ROOT)
+
+
+def git_config_exists(key: str) -> bool:
+    result = subprocess.run(
+        ["git", "config", "--get", key],
+        check=False,
+        cwd=REPO_ROOT,
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL,
+    )
+
+    return result.returncode == 0
 
 
 def checkout_publish_tree(branch: str) -> None:
