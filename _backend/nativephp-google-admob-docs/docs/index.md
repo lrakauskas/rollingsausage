@@ -7,8 +7,8 @@ Google AdMob integration for NativePHP Mobile with a facade-first PHP API and na
 ## What you get
 
 - anchored adaptive banner ads
-- interstitial ads with explicit load then show flow
-- rewarded ads with explicit load then show flow
+- interstitial ads with complete lifecycle events
+- rewarded ads with complete lifecycle events
 - facade-first PHP API
 - documented events with payload details
 
@@ -23,7 +23,3 @@ Google AdMob integration for NativePHP Mobile with a facade-first PHP API and na
 2. Review `Configuration` before wiring production IDs.
 3. Read the ad-format guide you are implementing.
 4. Use `Events` and `API Reference` for exact payloads and signatures.
-
-## Test mode behavior
-
-When `ADMOB_TEST_MODE=true`, the plugin always uses Google's official demo ad unit IDs instead of your production IDs.
