@@ -63,9 +63,6 @@ def main() -> int:
         DOCS_DIR / "api-reference" / "enums.md": {
             "enums_table": render_enums(artifact.api["enums"]),
         },
-        DOCS_DIR / "index.md": {
-            "release_meta": render_release_meta(artifact.manifest, args.source_repo, args.asset_name),
-        },
     }
 
     for file_path, replacements in generated_targets.items():
