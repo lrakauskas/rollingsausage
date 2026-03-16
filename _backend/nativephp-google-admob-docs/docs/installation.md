@@ -1,6 +1,6 @@
 # Installation
 
-Plugin is distributed via [NativePHP's Plugin Marketplace](https://nativephp.com/plugins/marketplace). You can also install it directly from the package repository if you have access.
+Plugin is distributed via <a href="https://nativephp.com/plugins/marketplace" target="_blank" rel="noopener">NativePHP's Plugin Marketplace</a>. You can also install it directly from the package repository if you have access.
 
 Install the package into your NativePHP app and register the plugin provider.
 

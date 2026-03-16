@@ -4,6 +4,8 @@ Google AdMob integration for NativePHP Mobile with a facade-first PHP API and na
 
 > Currently **supports Android only**. iOS coming soon.
 
+Plugin is distributed via <a href="https://nativephp.com/plugins/marketplace" target="_blank" rel="noopener">NativePHP's Plugin Marketplace</a>
+
 ## What you get
 
 - anchored adaptive banner ads
