@@ -9,7 +9,7 @@ on:
       private_repo:
         description: Private repo slug
         required: true
-        default: lrakauskas/nativephp-google-admob
+        default: lrakauskas/nativephp-admob
       plugin_tag:
         description: Plugin tag
         required: true
