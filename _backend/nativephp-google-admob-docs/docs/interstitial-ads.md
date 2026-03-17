@@ -5,6 +5,8 @@ Interstitial ads use an explicit two-step lifecycle: you have to load first, the
 ## Typical usage
 
 ```php
+<?php
+
 use lrakauskas\NativephpGoogleAdmob\Facades\AdMobInterstitial;
 
 AdMobInterstitial::loadInterstitial();

@@ -5,6 +5,8 @@ Rewarded ads use an explicit two-step lifecycle: you have to load first, then sh
 ## Typical usage
 
 ```php
+<?php
+
 use lrakauskas\NativephpGoogleAdmob\Facades\AdMobRewarded;
 
 AdMobRewarded::loadRewarded();
