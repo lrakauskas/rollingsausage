@@ -62,7 +62,3 @@ class MyController extends Controller
 - Only one banner can be shown at a time. Showing a new banner replaces the existing one.
 - Status calls let you inspect visibility and current native state
 - Test mode swaps in Google demo ad units automatically
-
-```
-
-```
