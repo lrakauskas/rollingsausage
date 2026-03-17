@@ -511,6 +511,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#show-banner-on-app-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      Show Banner on App Start
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#notes" class="md-nav__link">
     <span class="md-ellipsis">
       Notes
@@ -748,6 +757,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#show-banner-on-app-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      Show Banner on App Start
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#notes" class="md-nav__link">
     <span class="md-ellipsis">
       Notes
@@ -800,6 +818,24 @@
 <span class="k">await</span><span class="w"> </span><span class="nx">googleAdmobBanner</span><span class="p">.</span><span class="nx">getBannerStatus</span><span class="p">();</span>
 <span class="k">await</span><span class="w"> </span><span class="nx">googleAdmobBanner</span><span class="p">.</span><span class="nx">hideBanner</span><span class="p">();</span>
 </code></pre></div>
+<h2 id="show-banner-on-app-start">Show Banner on App Start</h2>
+<p>Banners require some native components to be mounted and obviously you need to keep in mind that PHP side of your app will keep booting fresh on every request. Therefore, it's best to show banner on a landing page's controller. You should always check if the banner is already visible before showing it to avoid unnecessary API calls</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+
+<span class="k">use</span> <span class="nx">lrakauskas\NativephpGoogleAdmob\Enums\BannerPosition</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">lrakauskas\NativephpGoogleAdmob\Facades\AdMobBanner</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">MyController</span> <span class="k">extends</span> <span class="nx">Controller</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">index</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="o">!</span> <span class="nx">AdMobBanner</span><span class="o">::</span><span class="na">isBannerVisible</span><span class="p">())</span> <span class="p">{</span>
+            <span class="nx">AdMobBanner</span><span class="o">::</span><span class="na">showBanner</span><span class="p">(</span><span class="nx">position</span><span class="o">:</span> <span class="nx">BannerPosition</span><span class="o">::</span><span class="na">Bottom</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre></div>
 <h2 id="notes">Notes</h2>
 <ul>
 <li>Banner ads can be shown at either the top or bottom of the screen</li>
@@ -807,6 +843,8 @@
 <li>Status calls let you inspect visibility and current native state</li>
 <li>Test mode swaps in Google demo ad units automatically</li>
 </ul>
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
 
 
 
