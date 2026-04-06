@@ -44,6 +44,7 @@ nav:
   - Home: index.md
   - Installation: installation.md
   - Configuration: configuration.md
+  - Resolving AdUnit IDs: adunit-id.md
   - Banner Ads: banner-ads.md
   - Interstitial Ads: interstitial-ads.md
   - Rewarded Ads: rewarded-ads.md

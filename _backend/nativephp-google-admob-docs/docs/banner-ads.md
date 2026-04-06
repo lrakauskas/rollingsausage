@@ -29,7 +29,11 @@ On(AdMobEvents.BannerShown, (payload) => {
   console.log("Banner shown!", payload);
 });
 
-await googleAdmobBanner.showBanner().position("bottom");
+await googleAdmobBanner
+  .showBanner()
+  // We must always pass AdUnit ID when using JS bridge
+  .adUnitId("ca-app-pub-3940256099942544/9214589741")
+  .position("bottom");
 await googleAdmobBanner.getBannerStatus();
 await googleAdmobBanner.hideBanner();
 ```

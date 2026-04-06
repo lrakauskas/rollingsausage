@@ -32,7 +32,8 @@ On(AdMobEvents.RewardedEarned, (payload) => {
   // Grant user the reward they deserved!
 });
 
-await googleAdmobRewarded.loadRewarded();
+// We must always pass AdUnit ID when using JS bridge
+await googleAdmobRewarded.loadRewarded().adUnitId("ca-app-pub-3940256099942544/1033173712");
 ```
 
 ## Recommended flow

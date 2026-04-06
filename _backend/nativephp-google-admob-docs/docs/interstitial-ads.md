@@ -28,7 +28,8 @@ On(AdMobEvents.InterstitialLoaded, (payload) => {
   await googleAdmobInterstitial.showInterstitial();
 });
 
-await googleAdmobInterstitial.loadInterstitial();
+// We must always pass AdUnit ID when using JS bridge
+await googleAdmobInterstitial.loadInterstitial().adUnitId("ca-app-pub-3940256099942544/1033173712");
 ```
 
 ## Recommended flow
