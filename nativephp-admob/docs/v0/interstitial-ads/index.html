@@ -255,6 +255,25 @@
   
   
     <li class="md-tabs__item">
+      <a href="../adunit-id/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Resolving AdUnit IDs
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
       <a href="../banner-ads/" class="md-tabs__link">
         
   
@@ -452,6 +471,28 @@
   
   
     <li class="md-nav__item">
+      <a href="../adunit-id/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Resolving AdUnit IDs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../banner-ads/" class="md-nav__link">
         
   
@@ -613,10 +654,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
         
           
-          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
             
   
   
@@ -629,8 +670,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_8">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
             <span class="md-nav__icon md-icon"></span>
             API Reference
           </label>
@@ -795,7 +836,8 @@
 <span class="w">  </span><span class="k">await</span><span class="w"> </span><span class="nx">googleAdmobInterstitial</span><span class="p">.</span><span class="nx">showInterstitial</span><span class="p">();</span>
 <span class="p">});</span>
 
-<span class="k">await</span><span class="w"> </span><span class="nx">googleAdmobInterstitial</span><span class="p">.</span><span class="nx">loadInterstitial</span><span class="p">();</span>
+<span class="c1">// We must always pass AdUnit ID when using JS bridge</span>
+<span class="k">await</span><span class="w"> </span><span class="nx">googleAdmobInterstitial</span><span class="p">.</span><span class="nx">loadInterstitial</span><span class="p">().</span><span class="nx">adUnitId</span><span class="p">(</span><span class="s2">&quot;ca-app-pub-3940256099942544/1033173712&quot;</span><span class="p">);</span>
 </code></pre></div>
 <h2 id="recommended-flow">Recommended flow</h2>
 <ol>
