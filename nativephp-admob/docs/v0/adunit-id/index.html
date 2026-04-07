@@ -10,13 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://lrakauskas.github.io/rollingsausage/nativephp-admob/docs/latest/rewarded-ads/">
+        <link rel="canonical" href="https://lrakauskas.github.io/rollingsausage/nativephp-admob/docs/latest/adunit-id/">
       
       
-        <link rel="prev" href="../interstitial-ads/">
+        <link rel="prev" href="../configuration/">
       
       
-        <link rel="next" href="../events/">
+        <link rel="next" href="../banner-ads/">
       
       
       <link rel="icon" href="../assets/images/admob-mark.svg">
@@ -24,7 +24,7 @@
     
     
       
-        <title>Rewarded Ads - NativePHP Google AdMob</title>
+        <title>Resolving AdUnit IDs - NativePHP Google AdMob</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#rewarded-ads" class="md-skip">
+        <a href="#configuration" class="md-skip">
           Skip to content
         </a>
       
@@ -111,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Rewarded Ads
+              Resolving AdUnit IDs
             
           </span>
         </div>
@@ -253,9 +253,11 @@
   
   
   
+    
   
-    <li class="md-tabs__item">
-      <a href="../adunit-id/" class="md-tabs__link">
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
         
   
   
@@ -310,11 +312,9 @@
   
   
   
-    
   
-  
-    <li class="md-tabs__item md-tabs__item--active">
-      <a href="./" class="md-tabs__link">
+    <li class="md-tabs__item">
+      <a href="../rewarded-ads/" class="md-tabs__link">
         
   
   
@@ -468,10 +468,32 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../adunit-id/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Resolving AdUnit IDs
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -482,6 +504,44 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#php" class="md-nav__link">
+    <span class="md-ellipsis">
+      PHP
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#js-bridge" class="md-nav__link">
+    <span class="md-ellipsis">
+      JS bridge
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -534,32 +594,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Rewarded Ads
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../rewarded-ads/" class="md-nav__link">
         
   
   
@@ -570,44 +608,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#typical-usage" class="md-nav__link">
-    <span class="md-ellipsis">
-      Typical usage
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#recommended-flow" class="md-nav__link">
-    <span class="md-ellipsis">
-      Recommended flow
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -780,18 +780,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#typical-usage" class="md-nav__link">
+  <a href="#php" class="md-nav__link">
     <span class="md-ellipsis">
-      Typical usage
+      PHP
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#recommended-flow" class="md-nav__link">
+  <a href="#js-bridge" class="md-nav__link">
     <span class="md-ellipsis">
-      Recommended flow
+      JS bridge
     </span>
   </a>
   
@@ -813,42 +813,28 @@
 
 
 
-<h1 id="rewarded-ads">Rewarded Ads</h1>
-<p>Rewarded ads use an explicit two-step lifecycle: you have to load first, then show when ready. In general, you want to load the ad as soon as possible and keep it ready for when you actually need it. When time is right to show, check if the ad is ready and show it. Listen to events to track the full lifecycle. You can only have one rewarded ad loaded at a time.</p>
-<h2 id="typical-usage">Typical usage</h2>
-<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
-
-<span class="k">use</span> <span class="nx">lrakauskas\NativephpGoogleAdmob\Facades\AdMobRewarded</span><span class="p">;</span>
-
-<span class="nx">AdMobRewarded</span><span class="o">::</span><span class="na">loadRewarded</span><span class="p">();</span>
-
-<span class="k">if</span> <span class="p">(</span><span class="nx">AdMobRewarded</span><span class="o">::</span><span class="na">isRewardedReady</span><span class="p">())</span> <span class="p">{</span>
-    <span class="nx">AdMobRewarded</span><span class="o">::</span><span class="na">showRewarded</span><span class="p">();</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>or via JS bridge:</p>
+<h1 id="configuration">Configuration</h1>
+<p>AdUnit IDs are automatically resolved by PHP facades based on your config and test mode settings. When using JS bridge, you must always pass AdUnit ID manually and resolve test / production AdUnit IDs yourself.</p>
+<h2 id="php">PHP</h2>
+<p>AdUnit ID is resolved in the following order:</p>
+<ul>
+<li>If test mode is enabled in config, it uses internal test AdUnit ID regardless of what you pass in method calls.</li>
+<li>If AdUnit ID is passed in method call, it uses that.</li>
+<li>If AdUnit ID is not passed in method call, it uses production AdUnit ID from your <code>.env</code> file. For example, <code>ADMOB_BANNER_AD_UNIT_ID</code>, <code>ADMOB_INTERSTITIAL_AD_UNIT_ID</code>, <code>ADMOB_REWARDED_AD_UNIT_ID</code>, etc.</li>
+</ul>
+<h2 id="js-bridge">JS bridge</h2>
+<p>When using JS bridge, you must always pass AdUnit ID manually and resolve test / production AdUnit IDs yourself as you are effectively bypassing plugin's PHP side of AdUnit ID resolution. For example:</p>
 <div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">On</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;#nativephp&quot;</span><span class="p">;</span>
-<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Events</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">AdMobEvents</span><span class="p">,</span><span class="w"> </span><span class="nx">googleAdmobRewarded</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;#lrakauskas/nativephp-google-admob&quot;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">Events</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="nx">AdMobEvents</span><span class="p">,</span><span class="w"> </span><span class="nx">googleAdmobInterstitial</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;#lrakauskas/nativephp-google-admob&quot;</span><span class="p">;</span>
 
-<span class="nx">On</span><span class="p">(</span><span class="nx">AdMobEvents</span><span class="p">.</span><span class="nx">RewardedLoaded</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">payload</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Rewarded loaded! Let&#39;s show it.&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">payload</span><span class="p">);</span>
-<span class="w">  </span><span class="k">await</span><span class="w"> </span><span class="nx">googleAdmobRewarded</span><span class="p">.</span><span class="nx">showRewarded</span><span class="p">();</span>
-<span class="p">});</span>
-
-<span class="nx">On</span><span class="p">(</span><span class="nx">AdMobEvents</span><span class="p">.</span><span class="nx">RewardedEarned</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">payload</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;User earned reward!&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">payload</span><span class="p">);</span>
-<span class="w">  </span><span class="c1">// Grant user the reward they deserved!</span>
+<span class="nx">On</span><span class="p">(</span><span class="nx">AdMobEvents</span><span class="p">.</span><span class="nx">InterstitialLoaded</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">payload</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Interstitial loaded! Let&#39;s show it.&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">payload</span><span class="p">);</span>
+<span class="w">  </span><span class="k">await</span><span class="w"> </span><span class="nx">googleAdmobInterstitial</span><span class="p">.</span><span class="nx">showInterstitial</span><span class="p">();</span>
 <span class="p">});</span>
 
 <span class="c1">// We must always pass AdUnit ID when using JS bridge</span>
-<span class="k">await</span><span class="w"> </span><span class="nx">googleAdmobRewarded</span><span class="p">.</span><span class="nx">loadRewarded</span><span class="p">().</span><span class="nx">adUnitId</span><span class="p">(</span><span class="s2">&quot;ca-app-pub-3940256099942544/1033173712&quot;</span><span class="p">);</span>
+<span class="k">await</span><span class="w"> </span><span class="nx">googleAdmobInterstitial</span><span class="p">.</span><span class="nx">loadInterstitial</span><span class="p">().</span><span class="nx">adUnitId</span><span class="p">(</span><span class="s2">&quot;ca-app-pub-3940256099942544/1033173712&quot;</span><span class="p">);</span>
 </code></pre></div>
-<h2 id="recommended-flow">Recommended flow</h2>
-<ol>
-<li>Load before the reward opportunity is presented.</li>
-<li>Show only when the ad is ready.</li>
-<li>Grant rewards based on the rewarded event payload rather than UI assumptions. Check <code>payload.amount</code> and <code>payload.type</code> to know what the user earned (you set these up in AdMob dashboard).</li>
-</ol>
 
 
 

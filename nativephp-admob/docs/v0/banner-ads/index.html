@@ -13,7 +13,7 @@
         <link rel="canonical" href="https://lrakauskas.github.io/rollingsausage/nativephp-admob/docs/latest/banner-ads/">
       
       
-        <link rel="prev" href="../configuration/">
+        <link rel="prev" href="../adunit-id/">
       
       
         <link rel="next" href="../interstitial-ads/">
@@ -253,6 +253,25 @@
   
   
   
+  
+    <li class="md-tabs__item">
+      <a href="../adunit-id/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Resolving AdUnit IDs
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
     
   
   
@@ -449,6 +468,28 @@
       
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../adunit-id/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Resolving AdUnit IDs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
     
   
   
@@ -622,10 +663,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
         
           
-          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
             
   
   
@@ -638,8 +679,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_8">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
             <span class="md-nav__icon md-icon"></span>
             API Reference
           </label>
@@ -814,7 +855,11 @@
 <span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Banner shown!&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">payload</span><span class="p">);</span>
 <span class="p">});</span>
 
-<span class="k">await</span><span class="w"> </span><span class="nx">googleAdmobBanner</span><span class="p">.</span><span class="nx">showBanner</span><span class="p">().</span><span class="nx">position</span><span class="p">(</span><span class="s2">&quot;bottom&quot;</span><span class="p">);</span>
+<span class="k">await</span><span class="w"> </span><span class="nx">googleAdmobBanner</span>
+<span class="w">  </span><span class="p">.</span><span class="nx">showBanner</span><span class="p">()</span>
+<span class="w">  </span><span class="c1">// We must always pass AdUnit ID when using JS bridge</span>
+<span class="w">  </span><span class="p">.</span><span class="nx">adUnitId</span><span class="p">(</span><span class="s2">&quot;ca-app-pub-3940256099942544/9214589741&quot;</span><span class="p">)</span>
+<span class="w">  </span><span class="p">.</span><span class="nx">position</span><span class="p">(</span><span class="s2">&quot;bottom&quot;</span><span class="p">);</span>
 <span class="k">await</span><span class="w"> </span><span class="nx">googleAdmobBanner</span><span class="p">.</span><span class="nx">getBannerStatus</span><span class="p">();</span>
 <span class="k">await</span><span class="w"> </span><span class="nx">googleAdmobBanner</span><span class="p">.</span><span class="nx">hideBanner</span><span class="p">();</span>
 </code></pre></div>
